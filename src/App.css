@@ -1,0 +1,33 @@
+.App {
+  margin: 10px;
+  padding: 10px;
+}
+
+.user-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+}
+.user {
+  padding: 0.3em 1em;
+  border: 3px solid salmon;
+  border-radius: 1em;
+}
+#add-product-btn {
+  cursor: pointer;
+  margin: auto;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+#add-product-btn:active {
+  cursor: pointer;
+  margin: auto;
+  font-size: 0.875rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-weight: 700;
+  line-height: 1.25rem;
+  background-color: rgb(88 80 236 / 0.9);
+  border-radius: 5px;
+}
