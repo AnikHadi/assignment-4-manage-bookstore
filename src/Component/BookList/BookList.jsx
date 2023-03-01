@@ -20,8 +20,6 @@ const BookList = () => {
     setIdCatch(id);
   };
 
-  console.log(books.length);
-
   useEffect(() => {
     dispatch(fetchBook);
   }, [dispatch]);
