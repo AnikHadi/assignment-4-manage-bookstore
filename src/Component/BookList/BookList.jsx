@@ -20,6 +20,8 @@ const BookList = () => {
     setIdCatch(id);
   };
 
+  console.log(books.length);
+
   useEffect(() => {
     dispatch(fetchBook);
   }, [dispatch]);
@@ -73,6 +75,9 @@ const BookList = () => {
             </div>
           </div>
           <div className="lws-bookContainer">
+            {books.length === 0 && (
+              <h2 className="no-product-found">No Book found</h2>
+            )}
             {/* <!-- Card  --> */}
             {books
               .filter(filterByFeatured)

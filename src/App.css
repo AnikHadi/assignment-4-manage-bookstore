@@ -31,3 +31,9 @@
   background-color: rgb(88 80 236 / 0.9);
   border-radius: 5px;
 }
+.no-product-found {
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 150px;
+}
