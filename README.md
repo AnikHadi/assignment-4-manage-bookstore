@@ -1,6 +1,6 @@
 # Project Title
 
-Redux Project Product Cart
+Redux Project Manage Bookstore
 
 ## Authors
 
@@ -8,7 +8,7 @@ Redux Project Product Cart
 
 ## Documentation
 
-[Live Project](https://superb-zabaione-88bbc2.netlify.app/)
+[Live Project](https://poetic-daifuku-d7e08e.netlify.app/)
 
 ## How to run
 
@@ -19,13 +19,13 @@ Please follow the below instructions to run this project in your machine:
 - Clone this repository -
 
 ```bash
-  git remote add origin https://github.com/Learn-with-Sumit/batch-2---assignment-3---product-cart-HadiAnik.git
+  git remote add origin https://github.com/Learn-with-Sumit/batch-2---assignment-4--manage-bookstore-HadiAnik.git
 ```
 
 - Go to the cloned project directory
 
 ```bash
-  cd product-cart
+  cd manage-bookstore
 ```
 
 - Install dependencies
