@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { isSearch } from "../../redux/filters/action";
 import logo from "../assets/images/logo.svg";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   return (
     <nav className="py-4 2xl:px-6">
       <div className="container flex items-center justify-between">
@@ -30,6 +33,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Filter books..."
+              onChange={(e) => dispatch(isSearch(e.target.value))}
               className="search"
               id="lws-searchBook"
             />

@@ -1,8 +1,9 @@
-import { IS_FEATURE } from "./actionType";
+import { IS_FEATURE, IS_SEARCH } from "./actionType";
 
 // initializeState
 const initializeState = {
   featured: "All",
+  searchText: "",
 };
 
 // reducer
@@ -12,6 +13,11 @@ const filterReducer = (state = initializeState, action) => {
       return {
         ...state,
         featured: action.payload,
+      };
+    case IS_SEARCH:
+      return {
+        ...state,
+        searchText: action.payload,
       };
 
     default:

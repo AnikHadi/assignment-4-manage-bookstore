@@ -8,6 +8,7 @@ import SingleBook from "../SingleBook/SingleBook";
 const BookList = () => {
   const books = useSelector((state) => state.books);
   const filterState = useSelector((state) => state.featured);
+  const { featured, searchText } = filterState;
   const dispatch = useDispatch();
   const sendChild = { title: "Add New Book", btn: "Add Book" };
   const [idCatch, setIdCatch] = useState(0);
@@ -23,10 +24,21 @@ const BookList = () => {
     dispatch(fetchBook);
   }, [dispatch]);
 
+  // filter by Featured
   const filterByFeatured = (book) => {
-    switch (filterState.featured) {
+    switch (featured) {
       case "Featured":
         return book.featured;
+      default:
+        return true;
+    }
+  };
+
+  // Search filter
+  const filterBySearch = (book) => {
+    switch (searchText) {
+      case searchText:
+        return book.name.toLowerCase().includes(searchText.toLowerCase());
       default:
         return true;
     }
@@ -42,14 +54,18 @@ const BookList = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => dispatch(isFeature("All"))}
-                className="filter-btn active-filter"
+                className={`filter-btn ${
+                  filterState.featured === "All" && "active-filter"
+                }`}
                 id="lws-filterAll"
               >
                 All
               </button>
               <button
                 onClick={() => dispatch(isFeature("Featured"))}
-                className="filter-btn"
+                className={`filter-btn ${
+                  filterState.featured === "Featured" && "active-filter"
+                }`}
                 id="lws-filterFeatured"
               >
                 Featured
@@ -57,18 +73,21 @@ const BookList = () => {
             </div>
           </div>
           <div className="lws-bookContainer">
-            {/* <!-- Card 1 --> */}
-            {books.filter(filterByFeatured).map((book) => (
-              <SingleBook
-                book={book}
-                key={book.id}
-                editBtnHandler={editBtnHandler}
-              />
-            ))}
+            {/* <!-- Card  --> */}
+            {books
+              .filter(filterByFeatured)
+              .filter(filterBySearch)
+              .map((book) => (
+                <SingleBook
+                  book={book}
+                  key={book.id}
+                  editBtnHandler={editBtnHandler}
+                />
+              ))}
           </div>
         </div>
         <div>
-          {/* Add new book section */}
+          {/* Add new book & update book input section */}
           {isVisible ? (
             <AddBookInput id={idCatch} setIsVisible={setIsVisible}>
               {sendChildForUpdate}
