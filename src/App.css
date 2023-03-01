@@ -23,10 +23,10 @@
   cursor: pointer;
   margin: auto;
   font-size: 0.875rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 4px;
+  padding-right: 4px;
   color: white;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.25rem;
   background-color: rgb(88 80 236 / 0.9);
   border-radius: 5px;

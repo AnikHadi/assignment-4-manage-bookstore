@@ -1,5 +1,4 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import addedBook from "../../redux/books/thunk/addedBook";
 import updatedBook from "../../redux/books/thunk/updatedbook";
@@ -10,27 +9,32 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
   const book = books.filter((book) => book.id === id)[0];
 
   // all local state
-  const { register, handleSubmit, reset } = useForm();
+  const formRef = useRef(null);
 
-  const submitFormHandler = (data) => {
+  const submitFormHandler = (e) => {
+    e.preventDefault();
     const newBook = {
       id: book?.id,
-      name: data.name,
-      author: data.author,
-      thumbnail: data.thumbnail,
-      price: parseInt(data.price),
-      rating: parseInt(data.rating),
-      featured: data.featured,
+      name: e.target.name.value,
+      author: e.target.author.value,
+      thumbnail: e.target.thumbnail.value,
+      price: parseInt(e.target.price.value),
+      rating: parseInt(e.target.rating.value),
+      featured: e.target.featured.checked,
     };
+
+    console.log(newBook);
 
     if (children.btn === "Update Book") {
       dispatch(updatedBook(id, newBook));
+      setIsVisible(false);
     } else if (children.btn === "Add Book") {
       dispatch(addedBook(newBook));
     }
-    reset();
+    formRef.current.reset();
   };
 
+  // Add Book Btn position change
   const addBookBtn = () => {
     try {
       setIsVisible(false);
@@ -42,7 +46,7 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
   return (
     <div className="p-4 overflow-hidden bg-white shadow-cardShadow rounded-md">
       <h4 className="mb-8 text-xl font-bold text-center">{children.title}</h4>
-      <form onSubmit={handleSubmit(submitFormHandler)} className="book-form">
+      <form ref={formRef} onSubmit={submitFormHandler} className="book-form">
         <div className="space-y-2">
           <label htmlFor="name">Book Name</label>
           <input
@@ -50,8 +54,8 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
             className="text-input"
             type="text"
             id="input-Bookname"
-            // name="name"
-            {...register("name", { required: "Name is require" })}
+            name="name"
+            required
           />
         </div>
 
@@ -60,10 +64,10 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
           <input
             className="text-input"
             defaultValue={book?.author}
-            {...register("author", { required: true })}
             type="text"
             id="input-Bookauthor"
-            // name="author"
+            name="author"
+            required
           />
         </div>
 
@@ -72,10 +76,10 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
           <input
             className="text-input"
             defaultValue={book?.thumbnail}
-            {...register("thumbnail", { required: true })}
             type="text"
             id="input-Bookthumbnail"
             name="thumbnail"
+            required
           />
         </div>
 
@@ -85,10 +89,10 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
             <input
               className="text-input"
               defaultValue={book?.price}
-              {...register("price", { required: true })}
               type="number"
               id="input-Bookprice"
               name="price"
+              required
             />
           </div>
 
@@ -97,12 +101,12 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
             <input
               className="text-input"
               defaultValue={book?.rating}
-              {...register("rating", { required: true })}
               type="number"
               id="input-Bookrating"
               name="rating"
               min="1"
               max="5"
+              required
             />
           </div>
         </div>
@@ -111,8 +115,7 @@ const AddBookInput = ({ children, id, setIsVisible }) => {
           <input
             id="input-Bookfeatured"
             type="checkbox"
-            defaultChecked={book?.featured}
-            {...register("featured")}
+            defaultChecked={children.btn === "Update Book" && book?.featured}
             name="featured"
             className="w-4 h-4"
           />
