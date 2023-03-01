@@ -1,12 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import deletedBook from "../../redux/books/thunk/deletedBook";
+import { updateBookBtn } from "../../redux/filters/action";
 
-const SingleBook = ({ book, editBtnHandler }) => {
+const SingleBook = ({ book }) => {
   const dispatch = useDispatch();
   const { id, name, author, thumbnail, price, rating, featured } = book;
   const array = Array(rating).fill(1);
   let count = 0;
+  const sendChildForUpdateBtn = {
+    id: id,
+    title: "Update the Book",
+    btn: "Update Book",
+  };
 
   const deleteBtnHandler = (id) => {
     dispatch(deletedBook(id));
@@ -28,7 +34,10 @@ const SingleBook = ({ book, editBtnHandler }) => {
             <span />
           )}
           <div className="text-gray-500 space-x-2">
-            <button className="lws-edit" onClick={() => editBtnHandler(id)}>
+            <button
+              className="lws-edit"
+              onClick={() => dispatch(updateBookBtn(sendChildForUpdateBtn))}
+            >
               <svg
                 fill="none"
                 viewBox="0 0 24 24"

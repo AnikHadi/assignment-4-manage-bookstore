@@ -1,4 +1,4 @@
-import { IS_FEATURE, IS_SEARCH } from "./actionType";
+import { IS_FEATURE, IS_SEARCH, UPDATE_BOOK_BTN } from "./actionType";
 
 export const isFeature = (status) => {
   return {
@@ -10,6 +10,13 @@ export const isFeature = (status) => {
 export const isSearch = (text) => {
   return {
     type: IS_SEARCH,
+    payload: text,
+  };
+};
+
+export const updateBookBtn = (text) => {
+  return {
+    type: UPDATE_BOOK_BTN,
     payload: text,
   };
 };

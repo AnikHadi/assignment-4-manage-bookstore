@@ -15,13 +15,13 @@
 }
 #add-product-btn {
   cursor: pointer;
-  margin: auto;
+  margin-left: auto;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 #add-product-btn:active {
   cursor: pointer;
-  margin: auto;
+  margin-left: auto;
   font-size: 0.875rem;
   padding-left: 4px;
   padding-right: 4px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchBook from "../../redux/books/thunk/fetchBook";
 import { isFeature } from "../../redux/filters/action";
@@ -10,15 +10,6 @@ const BookList = () => {
   const filterState = useSelector((state) => state.featured);
   const { featured, searchText } = filterState;
   const dispatch = useDispatch();
-  const sendChild = { title: "Add New Book", btn: "Add Book" };
-  const [idCatch, setIdCatch] = useState(0);
-
-  const [isVisible, setIsVisible] = useState(false);
-  const sendChildForUpdate = { title: "Update the Book", btn: "Update Book" };
-  const editBtnHandler = (id) => {
-    setIsVisible(true);
-    setIdCatch(id);
-  };
 
   useEffect(() => {
     dispatch(fetchBook);
@@ -81,23 +72,12 @@ const BookList = () => {
               .filter(filterByFeatured)
               .filter(filterBySearch)
               .map((book) => (
-                <SingleBook
-                  book={book}
-                  key={book.id}
-                  editBtnHandler={editBtnHandler}
-                />
+                <SingleBook book={book} key={book.id} />
               ))}
           </div>
         </div>
         <div>
-          {/* Add new book & update book input section */}
-          {isVisible ? (
-            <AddBookInput id={idCatch} setIsVisible={setIsVisible}>
-              {sendChildForUpdate}
-            </AddBookInput>
-          ) : (
-            <AddBookInput>{sendChild}</AddBookInput>
-          )}
+          <AddBookInput />
         </div>
       </div>
     </main>

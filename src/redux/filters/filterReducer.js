@@ -1,9 +1,14 @@
-import { IS_FEATURE, IS_SEARCH } from "./actionType";
+import { IS_FEATURE, IS_SEARCH, UPDATE_BOOK_BTN } from "./actionType";
 
 // initializeState
 const initializeState = {
   featured: "All",
   searchText: "",
+  updateBtnData: {
+    id: 0,
+    btn: "Add Book",
+    title: "Add New Book",
+  },
 };
 
 // reducer
@@ -18,6 +23,11 @@ const filterReducer = (state = initializeState, action) => {
       return {
         ...state,
         searchText: action.payload,
+      };
+    case UPDATE_BOOK_BTN:
+      return {
+        ...state,
+        updateBtnData: action.payload,
       };
 
     default:
