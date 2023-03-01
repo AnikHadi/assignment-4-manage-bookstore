@@ -6,7 +6,7 @@ import updatedBook from "../../redux/books/thunk/updatedbook";
 
 const AddBookInput = ({ children, id, setIsVisible }) => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state);
+  const books = useSelector((state) => state.books);
   const book = books.filter((book) => book.id === id)[0];
 
   // all local state

@@ -12,7 +12,7 @@ const bookReducer = (state = initializeState, action) => {
       return [
         ...state,
         {
-          id: Date.now(),
+          id: action.payload.id,
           name: action.payload.name,
           author: action.payload.author,
           thumbnail: action.payload.thumbnail,

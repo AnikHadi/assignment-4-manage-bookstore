@@ -19,7 +19,7 @@ const SingleBook = ({ book, editBtnHandler }) => {
         src={thumbnail}
         alt="book"
       />
-      {/* "https://m.media-amazon.com/images/P/B07DZ86WP7.01._SCLZZZZZZZ_SX500_.jpg" */}
+
       <div className="flex-1 h-full pr-2 pt-2 flex flex-col">
         <div className="flex items-center justify-between">
           {featured ? (
