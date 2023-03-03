@@ -26,7 +26,7 @@ const AddBookInput = () => {
       name: e.target.name.value,
       author: e.target.author.value,
       thumbnail: e.target.thumbnail.value,
-      price: parseInt(e.target.price.value),
+      price: Number(e.target.price.value),
       rating: parseInt(e.target.rating.value),
       featured: e.target.featured.checked,
     };
@@ -86,7 +86,7 @@ const AddBookInput = () => {
             <input
               className="text-input"
               defaultValue={book?.price}
-              type="number"
+              type="text"
               id="input-Bookprice"
               name="price"
               required
@@ -112,8 +112,9 @@ const AddBookInput = () => {
           <input
             id="input-Bookfeatured"
             type="checkbox"
-            defaultChecked={book?.id === id && book?.featured}
             name="featured"
+            defaultChecked={book?.id === id ? book?.featured : false}
+            // checked={book?.id === id ? book?.featured : false}
             className="w-4 h-4"
           />
           <label htmlFor="featured" className="ml-2 text-sm">

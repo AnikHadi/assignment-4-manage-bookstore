@@ -13,6 +13,7 @@ const SingleBook = ({ book }) => {
     title: "Update the Book",
     btn: "Update Book",
   };
+  //
 
   const deleteBtnHandler = (id) => {
     dispatch(deletedBook(id));
